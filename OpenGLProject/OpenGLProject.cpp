@@ -4,7 +4,7 @@
 #include "GLFW/glfw3.h"
 
 //Window dimensions
-const GLint WIDTH = 800, HEIGHT = 600;
+const GLint WIDTH = 1280, HEIGHT = 720;
 
 int main()
 {
@@ -74,6 +74,8 @@ int main()
 
 	glfwDestroyWindow(mainWindow);
 	glfwTerminate();
+
+	printf("Program Finished \n");
 
 	return 0;
 }
