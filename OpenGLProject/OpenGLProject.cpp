@@ -19,7 +19,7 @@ GLuint VAO, VBO, shader, uniformModel;
 bool direction = true;
 float triOffset = 0.0f;
 float triMaxoffset = 0.7f;
-float triIncrement = 0.0005f;
+float triIncrement = 0.005f;
 
 float curAngle = 0.0f;
 
@@ -215,7 +215,7 @@ int main()
 		if (abs(triOffset) >= triMaxoffset)
 			direction = !direction;
 
-		curAngle += 0.005f;
+		curAngle += 0.05f;
 
 		if (curAngle >= 360)
 		{
@@ -224,11 +224,11 @@ int main()
 
 		if (sizeDirection)
 		{
-			curSize += 0.0001f;
+			curSize += 0.001f;
 		}
 		else
 		{
-			curSize -= 0.0001f;
+			curSize -= 0.001f;
 		}
 
 		if (curSize >= maxSize || curSize <= minSize)
