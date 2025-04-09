@@ -2,20 +2,31 @@
 #include <stdio.h>
 #include "string.h"
 #include "stdlib.h"
+#include <math.h>
 
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
-#include "glm/mat4x4.hpp"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 //Window dimensions
 const GLint WIDTH = 1280, HEIGHT = 720;
+const float toRadians = 3.14159265f / 180.0f;
 
-GLuint VAO, VBO, shader, uniformXMove;
+GLuint VAO, VBO, shader, uniformModel;
 
 bool direction = true;
 float triOffset = 0.0f;
 float triMaxoffset = 0.7f;
 float triIncrement = 0.0005f;
+
+float curAngle = 0.0f;
+
+bool sizeDirection = true;
+float curSize = 0.5f;
+float maxSize = 0.8f;
+float minSize = 0.1f;
 
 //Create shader (usually in external file)
 //Vertex Shader
@@ -24,10 +35,10 @@ static const char* vShader = "									\n\
 																\n\
 layout (location = 0) in vec3 pos;								\n\
 																\n\
-uniform float xMove;											\n\
+uniform mat4 model;											\n\
 void main()														\n\
 {																\n\
-	gl_Position = vec4(0.2 * pos.x + xMove, pos.y, pos.z, 1.0);				\n\
+	gl_Position = model * vec4(pos, 1.0);				\n\
 }";
 
 //Fragment Shader
@@ -129,7 +140,7 @@ void CompileShaders() {
 		return;
 	}
 
-	uniformXMove = glGetUniformLocation(shader, "xMove");
+	uniformModel = glGetUniformLocation(shader, "model");
 }
 
 int main()
@@ -204,13 +215,40 @@ int main()
 		if (abs(triOffset) >= triMaxoffset)
 			direction = !direction;
 
+		curAngle += 0.005f;
+
+		if (curAngle >= 360)
+		{
+			curAngle -= 360;
+		}
+
+		if (sizeDirection)
+		{
+			curSize += 0.0001f;
+		}
+		else
+		{
+			curSize -= 0.0001f;
+		}
+
+		if (curSize >= maxSize || curSize <= minSize)
+		{
+			sizeDirection = !sizeDirection;
+		}
+
 		//Clear window
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glUseProgram(shader);
 
-		glUniform1f(uniformXMove, triOffset);
+		glm::mat4 model(1.0f);
+
+		model = glm::rotate(model, curAngle * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model, glm::vec3(triOffset, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(curSize, 0.5f, curSize));
+
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 
 		glBindVertexArray(VAO);
 
