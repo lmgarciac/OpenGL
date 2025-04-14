@@ -46,6 +46,8 @@ static const char* fShader = "Shaders/shader.frag";
 
 void CreateObjects()
 {
+	//Pyramids
+
 	unsigned int indices[] = {
 		0, 3, 1,
 		1, 3, 2,
@@ -57,7 +59,7 @@ void CreateObjects()
 	{
 		//x		//y		//z			//u		//v
 		-1.0f,	-1.0f,	0.0f,		0.0f,	0.0f,
-		0.0f,	0.0f,	1.0f,		0.5f,	0.5f,
+		0.0f,	-1.0f,	1.0f,		0.5f,	0.0f,
 		1.0f,	-1.0f,	0.0f,		1.0f,	0.0f,
 		0.0f,	1.0f,	0.0f,		0.5f,	1.0f,
 	};
@@ -69,6 +71,49 @@ void CreateObjects()
 	Mesh* obj2 = new Mesh();
 	obj2->CreateMesh(vertices, indices, 20, 12);
 	meshList.push_back(obj2);
+
+	////Cubes
+
+	//unsigned int indices[] = {
+	//	// Front face
+	//	0, 1, 2,
+	//	2, 1, 3,
+	//	// Right face
+	//	2, 3, 6,
+	//	6, 3, 7,
+	//	// Back face
+	//	6, 7, 4,
+	//	4, 7, 5,
+	//	// Left face
+	//	4, 5, 0,
+	//	0, 5, 1,
+	//	// Bottom face
+	//	4, 0, 6,
+	//	6, 0, 2,
+	//	// Top face
+	//	1, 5, 3,
+	//	3, 5, 7
+	//};
+
+	//GLfloat vertices[] = {
+	//	// x      y      z       u     v
+	//	-1.0f, -1.0f,  1.0f,   0.0f, 0.0f,  // 0
+	//	 1.0f, -1.0f,  1.0f,   1.0f, 0.0f,  // 1
+	//	-1.0f,  1.0f,  1.0f,   0.0f, 1.0f,  // 2
+	//	 1.0f,  1.0f,  1.0f,   1.0f, 1.0f,  // 3
+	//	-1.0f, -1.0f, -1.0f,   1.0f, 0.0f,  // 4
+	//	 1.0f, -1.0f, -1.0f,   0.0f, 0.0f,  // 5
+	//	-1.0f,  1.0f, -1.0f,   1.0f, 1.0f,  // 6
+	//	 1.0f,  1.0f, -1.0f,   0.0f, 1.0f   // 7
+	//};
+
+	//Mesh* obj1 = new Mesh();
+	//obj1->CreateMesh(vertices, indices, 40, 36);
+	//meshList.push_back(obj1);
+
+	//Mesh* obj2 = new Mesh();
+	//obj2->CreateMesh(vertices, indices, 40, 36);
+	//meshList.push_back(obj2);
 }
 
 void CreateShaders()

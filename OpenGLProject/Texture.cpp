@@ -2,6 +2,7 @@
 
 Texture::Texture()
 {
+	textureID = 0;
 	width = 0;
 	height = 0;
 	bitDepth = 0;
@@ -10,6 +11,7 @@ Texture::Texture()
 
 Texture::Texture(const char* fileLoc)
 {
+	textureID = 0;
 	width = 0;
 	height = 0;
 	bitDepth = 0;
