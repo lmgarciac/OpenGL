@@ -26,17 +26,20 @@
 #include "PointLight.h"
 #include "SpotLight.h"
 #include "Material.h"
+#include "Model.h"
 
-Canvas mainWindow(1024, 768);
+
+Canvas mainWindow(800, 800);
 
 Camera camera(glm::vec3(0.0f, 0.0f, 0.0f), 
 			  glm::vec3(0.0f, 1.0f, 0.0f),
 			  -90.0f,0.0f,2.0f,0.1f);
 
 DirectionalLight mainLight(1.0f, 1.0f, 1.0f, 
-				           0.0f, 0.0f,
+				           1.0f, 1.0f,
 						   0.0f, 0.0f, -1.0f);
 
+Assimp::Importer importer;
 
 PointLight pointLights[] = {
 	PointLight(	1.0f, 0.0f, 0.0f, 
@@ -78,6 +81,9 @@ Material dullMaterial(1.0f, 32);
 Texture brickTexture("Textures/texture_wall.png");
 Texture dirtTexture("Textures/texture_ground.png");
 Texture plainTexture("Textures/texture_plain.png");
+
+Model spaceShipModel("Models/Intergalactic_Spaceship-(Wavefront).obj");
+Model plantModel("Models/Low-Poly Plant_.obj");
 
 std::vector<Mesh*> meshList;
 std::vector<Shader*> shaderList;
@@ -237,9 +243,12 @@ int main()
 	GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0, 
 		   uniformEyePosition = 0, uniformSpecularIntensity = 0, uniformShininess = 0;
 
-	brickTexture.LoadTexture();
-	dirtTexture.LoadTexture();
-	plainTexture.LoadTexture();
+	brickTexture.LoadTexture(true);
+	dirtTexture.LoadTexture(true);
+	plainTexture.LoadTexture(true);
+
+	plantModel.LoadModel();
+	spaceShipModel.LoadModel();
 
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)mainWindow.GetBufferHeight() / (GLfloat)mainWindow.GetBufferWidth(), 0.1f, 100.0f);
 
@@ -280,7 +289,7 @@ int main()
 
 		shaderList[0]->SetDirectionalLight(&mainLight);
 		shaderList[0]->SetPointLights(pointLights, pointLightCount);
-		shaderList[0]->SetSpotLights(spotLights, spotLightCount);
+		//shaderList[0]->SetSpotLights(spotLights, spotLightCount);
 
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.CalculateViewMatrix()));
@@ -293,7 +302,6 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		brickTexture.UseTexture();
 		shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
-
 		meshList[0]->RenderMesh();
 
 		model = glm::mat4(1.0f);
@@ -302,7 +310,6 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		dirtTexture.UseTexture();
 		dullMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
-
 		meshList[1]->RenderMesh();
 
 		model = glm::mat4(1.0f);
@@ -310,8 +317,21 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		dirtTexture.UseTexture();
 		shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
-
 		meshList[2]->RenderMesh();
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-2.0f, -2.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		plantModel.RenderModel();
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -2.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		spaceShipModel.RenderModel();
+
 
 		glUseProgram(0);
 

@@ -76,14 +76,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\include;$(ProjectDir)ExternalLibs\glew-2.1.0\include;$(ProjectDir)ExternalLibs\GLM;$(ProjectDir)ExternalLibs\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\include;$(ProjectDir)ExternalLibs\glew-2.1.0\include;$(ProjectDir)ExternalLibs\GLM;$(ProjectDir)ExternalLibs\STB_IMAGE;$(ProjectDir)ExternalLibs\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)\ExternalLibs\glew-2.1.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)\ExternalLibs\glew-2.1.0\lib\Release\Win32;$(ProjectDir)\ExternalLibs\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\include;$(ProjectDir)ExternalLibs\glew-2.1.0\include;$(ProjectDir)ExternalLibs\GLM;$(ProjectDir)ExternalLibs\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\include;$(ProjectDir)ExternalLibs\glew-2.1.0\include;$(ProjectDir)ExternalLibs\GLM;$(ProjectDir)ExternalLibs\STB_IMAGE;$(ProjectDir)ExternalLibs\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -102,8 +102,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)\ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)\ExternalLibs\glew-2.1.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)\ExternalLibs\glew-2.1.0\lib\Release\Win32;$(ProjectDir)\ExternalLibs\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -112,13 +112,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\include;$(ProjectDir)ExternalLibs\glew-2.1.0\include;$(ProjectDir)ExternalLibs\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\include;$(ProjectDir)ExternalLibs\glew-2.1.0\include;$(ProjectDir)ExternalLibs\GLM;$(ProjectDir)ExternalLibs\assimp\include;$(ProjectDir)ExternalLibs\STB_IMAGE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)ExternalLibs\glew-2.1.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)ExternalLibs\glew-2.1.0\lib\Release\Win32;$(ProjectDir)\ExternalLibs\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,6 +147,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="OpenGLProject.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpotLight.h" />
