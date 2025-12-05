@@ -105,6 +105,21 @@
       <AdditionalLibraryDirectories>$(ProjectDir)\ExternalLibs\glfw-3.4.bin.WIN32\lib-vc2022;$(ProjectDir)\ExternalLibs\glew-2.1.0\lib\Release\Win32;$(ProjectDir)\ExternalLibs\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>REM Copiar DLLs
+copy /Y "$(ProjectDir)assimp-vc143-mt.dll" "$(TargetDir)"
+copy /Y "$(ProjectDir)glew32.dll" "$(TargetDir)"
+
+REM Copiar carpeta Models
+xcopy "$(ProjectDir)Models" "$(TargetDir)Models" /E /I /Y
+
+REM Copiar carpeta Shaders
+xcopy "$(ProjectDir)Shaders" "$(TargetDir)Shaders" /E /I /Y
+
+REM Copiar carpeta Textures
+xcopy "$(ProjectDir)Textures" "$(TargetDir)Textures" /E /I /Y
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
