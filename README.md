@@ -10,6 +10,9 @@ The project is configured so that after cloning the repository, it can be compil
 
 Building the solution in **Release x86** automatically copies all required DLLs and asset folders into the output directory.
 
+<img width="802" height="832" alt="image" src="https://github.com/user-attachments/assets/455ed31a-6a0b-4363-884d-b36fa5036ac2" />
+
+
 ---
 
 ## Project Overview
